@@ -1,0 +1,75 @@
+[
+    {
+        "arguments": {
+            "kallisto.outputFileNamePrefix": "MoHQ-CM-1-180.RNA-sub",
+            "kallisto.fastqR2": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/kallisto/inputs/MoHQ-CM-1-180.RNA-sub.R1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "kallisto.fastqR1": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/kallisto/inputs/MoHQ-CM-1-180.RNA-sub.R2.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "kallisto.runKallisto.modules": "kallisto/0.50.0 kallisto-transcriptome-index/0.50.0",
+            "kallisto.runKallisto.timeout": 48,
+            "kallisto.runKallisto.jobMemory": 12
+        },
+        "description": "kallisto workflow test",
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
+        "id": "kallisto_test_with_MoHQ-CM-1-180.RNA-sub",
+        "metadata": {
+            "kallisto.abundanceH5": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_kallisto_test_with_MoHQ-CM-1-180.RNA-sub_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "kallisto.abundanceTsv": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_kallisto_test_with_MoHQ-CM-1-180.RNA-sub_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "kallisto.runinfoJson": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_kallisto_test_with_MoHQ-CM-1-180.RNA-sub_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/kallisto/output_expectation/kallisto_test_with_MoHQ-CM-1-180.RNA-sub.metrics",
+                "type": "script"
+            }
+        ]
+    }
+]
