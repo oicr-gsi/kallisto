@@ -1,0 +1,6 @@
+{
+    "names": [
+        "kallisto"
+    ],
+    "wdl": "kallisto.wdl"
+}

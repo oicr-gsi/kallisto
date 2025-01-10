@@ -1,0 +1,20 @@
+## Commands
+This section lists command(s) run by WORKFLOW workflow
+
+* Running WORKFLOW
+
+=== Description here ===.
+
+<<<
+        $KALLISTO_ROOT/bin/kallisto quant \
+        -i $KALLISTO_TRANSCRIPTOME_INDEX_ROOT/transcriptome_kallisto0.50.0_ensembl104.idx \
+        --bootstrap-samples=120 \
+        -o outputDir \
+        -t 5 \
+        ~{fastqR1} \
+        ~{fastqR2}
+
+        mv outputDir/abundance.h5 ~{sampleID}.abundance.h5 
+        mv outputDir/abundance.tsv  ~{sampleID}.abundance.tsv
+        mv outputDir/run_info.json ~{sampleID}.run_info.json
+    >>>
