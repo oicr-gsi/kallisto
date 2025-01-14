@@ -12,7 +12,6 @@ workflow kallisto {
         fastqR1: "Input fastqR1 file for analysis sample"
         fastqR2: "Input fastqR2 file for analysis sample"
         outputFileNamePrefix: "Output prefix, customizable."
-        reference: "Name and version of reference genome"
     }
 
     # run kallisto
