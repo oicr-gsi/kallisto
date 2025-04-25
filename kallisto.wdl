@@ -29,7 +29,7 @@ workflow kallisto {
         description: "kallisto is a program for quantifying abundances of transcripts from RNA-Seq data, or more generally of target sequences using high-throughput sequencing reads. It is based on the novel idea of pseudoalignment for rapidly determining the compatibility of reads with targets, without the need for alignment."
         dependencies: [
             {
-                name: "kallisto/0.51.1",
+                name: "kallisto/0.48.0",
                 url: "https://github.com/pachterlab/kallisto"
             }
         ]
@@ -65,7 +65,7 @@ task runKallisto {
         File fastqR1
         File fastqR2
         String sampleID
-        String modules = "kallisto/0.51.1 kallisto-transcriptome-index/0.51.1"
+        String modules = "kallisto/0.48.0 kallisto-transcriptome-index/0.48.0"
         Int timeout = 48
         Int jobMemory = 12
     }
@@ -80,7 +80,7 @@ task runKallisto {
 
     command <<<
         $KALLISTO_ROOT/bin/kallisto quant \
-        -i $KALLISTO_TRANSCRIPTOME_INDEX_ROOT/index.idx \
+        -i $KALLISTO_TRANSCRIPTOME_INDEX_ROOT/transcriptome_kallisto0.48.0_ensembl104.idx \
         --bootstrap-samples=120 \
         -o outputDir \
         -t 5 \
