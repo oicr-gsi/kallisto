@@ -6,7 +6,7 @@ kallisto is a program for quantifying abundances of transcripts from RNA-Seq dat
 
 ## Dependencies
 
-* [kallisto 0.50.0](https://github.com/pachterlab/kallisto)
+* [kallisto 0.48.0](https://github.com/pachterlab/kallisto)
 
 
 ## Usage
@@ -34,7 +34,7 @@ Parameter|Value|Default|Description
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`runKallisto.modules`|String|"kallisto/0.50.0 kallisto-transcriptome-index/0.50.0"|Names and versions of modules
+`runKallisto.modules`|String|"kallisto/0.48.0 kallisto-transcriptome-index/0.48.0"|Names and versions of modules
 `runKallisto.timeout`|Int|48|Timeout in hours, needed to override imposed limits
 `runKallisto.jobMemory`|Int|12|Memory in Gb for this job
 
@@ -57,7 +57,7 @@ Output | Type | Description
  
  <<<
          $KALLISTO_ROOT/bin/kallisto quant \
-         -i $KALLISTO_TRANSCRIPTOME_INDEX_ROOT/transcriptome_kallisto0.50.0_ensembl104.idx \
+         -i $KALLISTO_TRANSCRIPTOME_INDEX_ROOT/transcriptome_kallisto0.48.0_ensembl104.idx \
          --bootstrap-samples=120 \
          -o outputDir \
          -t 5 \

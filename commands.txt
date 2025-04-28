@@ -7,7 +7,7 @@ This section lists command(s) run by WORKFLOW workflow
 
 <<<
         $KALLISTO_ROOT/bin/kallisto quant \
-        -i $KALLISTO_TRANSCRIPTOME_INDEX_ROOT/transcriptome_kallisto0.50.0_ensembl104.idx \
+        -i $KALLISTO_TRANSCRIPTOME_INDEX_ROOT/transcriptome_kallisto0.48.0_ensembl104.idx \
         --bootstrap-samples=120 \
         -o outputDir \
         -t 5 \
