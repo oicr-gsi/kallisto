@@ -1,16 +1,15 @@
 version 1.0
 
-
 workflow kallisto {
     input {
-        File fastqR1
-        File fastqR2
+        Array[File] fastqR1
+        Array[File] fastqR2
         String outputFileNamePrefix
     }
 
     parameter_meta {
-        fastqR1: "Input fastqR1 file for analysis sample"
-        fastqR2: "Input fastqR2 file for analysis sample"
+        fastqR1: "Array of R1 FASTQ files for the sample (e.g., multiple lanes)"
+        fastqR2: "Array of R2 FASTQ files for the sample (e.g., multiple lanes)"
         outputFileNamePrefix: "Output prefix, customizable."
     }
 
@@ -24,8 +23,8 @@ workflow kallisto {
         }
 
     meta {
-        author: "Gavin Peng"
-        email: "gpeng@oicr.on.ca"
+        author: "Gavin Peng, Monica L. Rojas-Pena"
+        email: "gpeng@oicr.on.ca, mrojaspena@oicr.on.ca"
         description: "kallisto is a program for quantifying abundances of transcripts from RNA-Seq data, or more generally of target sequences using high-throughput sequencing reads. It is based on the novel idea of pseudoalignment for rapidly determining the compatibility of reads with targets, without the need for alignment."
         dependencies: [
             {
@@ -62,8 +61,8 @@ workflow kallisto {
 # ==========================
 task runKallisto {
     input {
-        File fastqR1
-        File fastqR2
+        Array[File] fastqR1
+        Array[File] fastqR2
         String sampleID
         String modules = "kallisto/0.48.0 kallisto-transcriptome-index/0.48.0"
         Int timeout = 48
@@ -71,21 +70,27 @@ task runKallisto {
     }
 
     parameter_meta {
-        fastqR1: "Input fastqR1 file for analysis sample"
-        fastqR2: "Input fastqR2 file for analysis sample"
-        jobMemory: "Memory in Gb for this job"
+        fastqR1: "Array of FASTQ R1 files"
+        fastqR2: "Array of FASTQ R2 files"
+        jobMemory: "Memory in GB for this job"
         modules: "Names and versions of modules"
         timeout: "Timeout in hours, needed to override imposed limits"
     }
 
     command <<<
+        set -euo pipefail
+
+        # Concatenating input FASTQ files
+        cat ~{sep=' ' fastqR1} > R1_combined.fastq
+        cat ~{sep=' ' fastqR2} > R2_combined.fastq
+
         $KALLISTO_ROOT/bin/kallisto quant \
         -i $KALLISTO_TRANSCRIPTOME_INDEX_ROOT/transcriptome_kallisto0.48.0_ensembl104.idx \
         --bootstrap-samples=120 \
         -o outputDir \
         -t 5 \
-        ~{fastqR1} \
-        ~{fastqR2}
+        R1_combined.fastq \
+        R2_combined.fastq
 
         mv outputDir/abundance.h5 ~{sampleID}.abundance.h5 
         mv outputDir/abundance.tsv  ~{sampleID}.abundance.tsv
