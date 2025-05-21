@@ -74,7 +74,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/kallisto/output_expectation/2.0.0/kallisto_test_with_MoHQ-CM-1-180.RNA-sub.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/kallisto/output_expectation/1.1.0/kallisto_test_with_MoHQ-CM-1-180.RNA-sub.metrics",
                 "type": "script"
             }
         ]
