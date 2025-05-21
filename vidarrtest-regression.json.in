@@ -31,6 +31,8 @@
                 }    
             ],
             "kallisto.isSingleEnd": false,
+            "kallisto.fragmentLength": 200,
+            "kallisto.sd": 30,
             "kallisto.runKallisto.modules": "kallisto/0.48.0 kallisto-transcriptome-index/0.48.0",
             "kallisto.runKallisto.timeout": 48,
             "kallisto.runKallisto.jobMemory": 12
